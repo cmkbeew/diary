@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import './DiaryList.css';
 import DiaryItem from './DiaryItem';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const DiaryList = () => {
   const nav = useNavigate();
@@ -12,6 +13,16 @@ const DiaryList = () => {
   const onChangeSortType = (e) => {
     setSortType(e.target.value);
   }
+
+  const [diaries, setDiaries] = useState([]);
+
+  useEffect(() => {
+    axios.get("/diary/list")
+      .then(res => {
+        setDiaries(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <div className="DiaryList">
@@ -24,7 +35,9 @@ const DiaryList = () => {
       </div>
 
       <div className="list_wrapper">
-        <DiaryItem />
+        {diaries.map((diary) => (
+          <DiaryItem key={diary.id} {...diary} />
+        ))}
       </div>
     </div>
   );

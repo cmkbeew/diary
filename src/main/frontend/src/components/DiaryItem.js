@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './DiaryItem.css';
 import { getEmotionImage } from '../util/get-emotion-image';
 import Button from './Button';
+import axios from 'axios';
 
-const DiaryItem = () => {
+const DiaryItem = ({ id, emotionId, date, content }) => {
+
   return (
     <div className="DiaryItem">
-      <div className={`img_section img_section_1`}>
-        <img src={getEmotionImage(1)} alt="emotion"/>
+      <div className={`img_section img_section_${emotionId}`}>
+        <img src={getEmotionImage(emotionId)} alt="emotion"/>
       </div>
       <div className="info_section">
-        <div className="created_date">{new Date().toLocaleDateString()}</div>
-        <div className="content">일기 내용</div>
+        <div className="created_date">{date}</div>
+        <div className="content">{content}, {id}</div>
       </div>
       <div className="button_section">
         <Button text={"수정하기"} />
