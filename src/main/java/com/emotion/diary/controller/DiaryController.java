@@ -19,22 +19,7 @@ public class DiaryController {
 
     @GetMapping("/list")
     public List<Diary> getAllDiary() {
-        List<Diary> diaryList = new ArrayList<>();
-        diaryList.add(Diary.builder()
-                .id(1L)
-                .emotionId(3)
-                .content("테스트")
-                .date("2024-12-09")
-                .build()
-        );
-
-        diaryList.add(Diary.builder()
-                .id(2L)
-                .emotionId(5)
-                .content("테스트2222")
-                .date("2024-12-12")
-                .build()
-        );
+        List<Diary> diaryList = diaryService.getAllList();
 
         return diaryList;
     }

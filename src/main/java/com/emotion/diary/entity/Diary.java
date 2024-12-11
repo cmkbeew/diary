@@ -1,24 +1,20 @@
 package com.emotion.diary.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Builder;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Builder
 @Entity
+@Table(name = "diary")
 public class Diary {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private int emotionId;
 
     private String content;
 
-    private String date;
+    private String createdDate;
 }

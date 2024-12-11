@@ -1,5 +1,9 @@
 package com.emotion.diary.service;
 
-public interface DiaryService {
+import com.emotion.diary.entity.Diary;
 
+import java.util.List;
+
+public interface DiaryService {
+    List<Diary> getAllList();
 }
